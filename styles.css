@@ -1,3 +1,4 @@
+/* Genel Stil */
 body {
     background: url('739b1e8eef3cfc0f9845100aa0a3ead4.gif') no-repeat center center fixed;
     background-size: cover;
@@ -7,23 +8,9 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'Didot', serif;
-    flex-direction: column;
-    position: relative;
 }
 
-.clock {
-    position: absolute;
-    top: 20px;
-    font-size: 24px;
-    color: red;
-    font-family: 'Uncial Antiqua', cursive;
-    font-weight: bold;
-    background: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 2px solid red;
-}
-
+/* Ortadaki Minnie Mouse temalı Enter Butonu */
 .circle {
     width: 150px;
     height: 150px;
@@ -39,9 +26,10 @@ body {
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
     position: absolute;
     animation: pulse 1.5s infinite;
-    border: 5px dotted white;
+    border: 5px dotted white; /* Minnie Mouse puantiyeli stil */
 }
 
+/* Minnie Mouse Kulakları */
 .circle::before, .circle::after {
     content: "";
     width: 85px;
@@ -60,6 +48,7 @@ body {
     right: -25px;
 }
 
+/* Login Form */
 .login-form {
     display: none;
     position: absolute;
@@ -95,18 +84,27 @@ body {
     font-weight: bold;
 }
 
+/* Login Başlık Rengi */
 .login-form h2 {
     color: red;
     font-family: 'Uncial Antiqua', cursive;
 }
 
+/* Enter butonu büyüyüp küçülüyor (pulsing effect) */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
 
+/* Login ekranı yukarıdan kayarak gelir ve büyüyerek görünür */
 @keyframes slideFadeIn {
-    0% { opacity: 0; transform: translate(-50%, -100%) scale(0.8); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    0% { 
+        opacity: 0; 
+        transform: translate(-50%, -100%) scale(0.8); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
 }
