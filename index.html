@@ -4,19 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <!-- Yuvarlak buton (Minnie Mouse Kulakları ile) -->
+    <div class="clock" id="clock"></div>
     <div class="circle" id="enterButton" onclick="showLogin()">Enter</div>
-
-    <!-- Login Form -->
     <div class="login-form" id="loginForm">
         <h2>Login</h2>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button>Login</button>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="storeLogin()">Login</button>
     </div>
 
     <script src="script.js"></script>
