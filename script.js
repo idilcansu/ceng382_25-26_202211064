@@ -6,7 +6,7 @@ function showLogin() {
     loginForm.style.animation = 'slideFadeIn 0.6s ease-out forwards';
     document.getElementById('enterButton').style.display = 'none';
 }
-
+//Hafta1 Hafta2 beraber push icin
 function storeLogin() {
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
