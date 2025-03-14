@@ -68,3 +68,25 @@ classTable.addEventListener('mouseout', function (e) {
         row.style.backgroundColor = ''; // Varsayılan renge dön
     }
 });
+
+// H tuşuna basıldığında tabloyu gizle/göster
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'h') {
+        const tableContainer = document.getElementById('tableContainer');
+        tableContainer.style.opacity = tableContainer.style.opacity === '0' ? '1' : '0';
+    }
+});
+
+// Çift Tıklama Olayı
+classTable.addEventListener('dblclick', function (e) {
+    if (e.target.tagName === 'TD') {
+        const row = e.target.parentElement;
+        const className = row.cells[0].innerText;
+        const numPeople = row.cells[1].innerText;
+        const description = row.cells[2].innerText;
+
+        console.log('Çift Tıklama Satır Detayları:', { className, numPeople, description });
+        // İsteğe bağlı olarak satırı kaldırabilirsiniz:
+        // row.remove();
+    }
+});

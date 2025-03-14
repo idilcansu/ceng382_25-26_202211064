@@ -6,9 +6,8 @@
     <title>Login - Minnie Mouse</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet"> 
-
 </head>
-<body>
+<body id="body">
     <div class="login-container">
         <form id="loginForm">
             <h1 class="login-title">Login to Minnie Mouse</h1>
@@ -19,5 +18,15 @@
         <div id="live-clock" class="login-title"></div>
     </div>
     <script src="script.js"></script>
+    <script>
+        document.getElementById('body').addEventListener('keydown', function(event) {
+            if (event.key === 'h') {
+                const forms = document.querySelectorAll('form');
+                forms.forEach(form => {
+                    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                });
+            }
+        });
+    </script>
 </body>
 </html>

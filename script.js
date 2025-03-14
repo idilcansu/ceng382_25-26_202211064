@@ -45,3 +45,11 @@ loginInputs.forEach(input => {
         // Burada giriş verisi doğrulama yapılabilir.
     });
 });
+
+// H tuşuna basıldığında login formunu gizle/göster
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'h') {
+        const loginContainer = document.getElementById('loginContainer');
+        loginContainer.style.opacity = loginContainer.style.opacity === '0' ? '1' : '0';
+    }
+});

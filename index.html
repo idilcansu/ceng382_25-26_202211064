@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet"> 
 </head>
-<body>
+<body id="body">
     <div class="clock" id="clock"></div>
     <div class="circle" id="enterButton" onclick="showLogin()">Enter</div>
     <div class="login-form" id="loginForm">
     <script>
         document.getElementById('enterButton').addEventListener('click', function () {
             window.location.href = 'login.html';  // Login sayfasına yönlendir
+        });
+        document.getElementById('body').addEventListener('keydown', function(event) {
+            if (event.key === 'h') {
+                const forms = document.querySelectorAll('form');
+                forms.forEach(form => {
+                    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                });
+            }
         });
     </script>
 </body>
