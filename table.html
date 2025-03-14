@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Information</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="table-container">
+        <h2>Add New Class</h2>
+        <form id="classForm">
+            <input type="text" id="className" placeholder="Class Name" required><br>
+            <input type="number" id="numPeople" placeholder="Number of People" required><br>
+            <input type="text" id="description" placeholder="Description" required><br>
+            <button type="submit">Add Class</button>
+        </form>
+
+        <table id="classTable">
+            <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Number of People</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="table.js"></script>
+</body>
+</html>

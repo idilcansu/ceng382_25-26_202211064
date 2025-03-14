@@ -1,40 +1,47 @@
-let userLogins = [];
+const loginForm = document.getElementById('loginForm');
+const liveClock = document.getElementById('live-clock');
+let users = [];
 
-function showLogin() {
-    let loginForm = document.getElementById('loginForm');
-    loginForm.style.display = 'block';
-    loginForm.style.animation = 'slideFadeIn 0.6s ease-out forwards';
-    document.getElementById('enterButton').style.display = 'none';
-}
+loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-function storeLogin() {
-    let username = document.getElementById('username').value;
-    let password = document.getElementById('password').value;
-    
-    if (username && password) {
-        userLogins.push({ username, password });
-        console.log("User Logins:", userLogins);
-        alert("Login successful!");
+    // Kullanıcı adı ve şifreyi diziye ekle
+    users.push({ username, password });
+    console.log(users);
+
+    // Giriş başarılıysa table.html sayfasına yönlendir
+    if (username === 'admin' && password === 'admin') {
+        window.location.href = 'table.html';  // table.html sayfasına yönlendirme
     } else {
-        alert("Please enter both username and password.");
+        alert('Invalid login credentials');
     }
-}
+});
 
+// Canlı saat
 function updateClock() {
-    let now = new Date();
-    let hours = now.getHours().toString().padStart(2, '0');
-    let minutes = now.getMinutes().toString().padStart(2, '0');
-    let seconds = now.getSeconds().toString().padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    const currentTime = new Date();
+    const hours = String(currentTime.getHours()).padStart(2, '0');
+    const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+    const seconds = String(currentTime.getSeconds()).padStart(2, '0');
+    liveClock.innerText = `${hours}:${minutes}:${seconds}`;
 }
-setInterval(updateClock, 1000);
-updateClock();
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'h' || event.key === 'H') {
-        let forms = document.querySelectorAll('.login-form');
-        forms.forEach(form => {
-            form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
-        });
-    }
+setInterval(updateClock, 1000);
+
+// Giriş Alanı Odak Olayı (Input Focus Event)
+const loginInputs = document.querySelectorAll('#loginForm input');
+
+loginInputs.forEach(input => {
+    input.addEventListener('focus', function () {
+        this.style.borderColor = 'blue';
+        this.style.boxShadow = '0 0 5px blue';
+    });
+
+    input.addEventListener('blur', function () {
+        this.style.borderColor = 'red';
+        this.style.boxShadow = 'none';
+        // Burada giriş verisi doğrulama yapılabilir.
+    });
 });

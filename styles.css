@@ -100,6 +100,74 @@ body {
     font-family: 'Uncial Antiqua', cursive;
 }
 
+/* Tablo Stili */
+.table-container {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid red;
+}
+
+#classTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#classTable th, #classTable td {
+    border: 1px solid red;
+    padding: 8px;
+    text-align: left;
+}
+
+#classTable th {
+    background-color: pink;
+    color: red;
+    font-family: 'Uncial Antiqua', cursive;
+}
+
+/* Login Container */
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid red;
+}
+
+.login-container input {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-container h1 {
+    color: red;
+    font-family: 'Uncial Antiqua', cursive;
+}
+
+.highlighted {
+    background-color: lightblue;
+}
+
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
