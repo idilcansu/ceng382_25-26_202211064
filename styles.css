@@ -159,13 +159,11 @@ body {
     font-weight: bold;
 }
 
-.login-container h1 {
+.login-title, .table-title {
     color: red;
     font-family: 'Uncial Antiqua', cursive;
-}
-
-.highlighted {
-    background-color: lightblue;
+    font-size: 2em; /* İsteğe bağlı olarak boyutunu ayarlayabilirsiniz */
+    margin-bottom: 20px;
 }
 
 @keyframes pulse {
