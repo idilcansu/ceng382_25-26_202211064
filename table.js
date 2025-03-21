@@ -98,13 +98,13 @@ classTable.addEventListener('dblclick', function (e) {
     }
 });
 
-// Keyup Olayı (Güncellenmiş Kod)
+// Keyup Olayı (Yeni Eklenen Kod)
 const classNameInput = document.getElementById('className');
 const numPeopleInput = document.getElementById('numPeople');
 
 classNameInput.addEventListener('keyup', function () {
-    if (this.value.length < 2) {
-        this.title = 'Sınıf adı en az 2 karakter olmalıdır.';
+    if (this.value.length < 3) {
+        this.title = 'Sınıf adı en az 3 karakter olmalıdır.';
     } else {
         this.title = '';
     }
