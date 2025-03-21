@@ -97,3 +97,23 @@ classTable.addEventListener('dblclick', function (e) {
         // alert(`Sınıf: ${className}\nKişi Sayısı: ${numPeople}\nAçıklama: ${description}`);
     }
 });
+
+// Keyup Olayı (Güncellenmiş Kod)
+const classNameInput = document.getElementById('className');
+const numPeopleInput = document.getElementById('numPeople');
+
+classNameInput.addEventListener('keyup', function () {
+    if (this.value.length < 2) {
+        this.title = 'Sınıf adı en az 2 karakter olmalıdır.';
+    } else {
+        this.title = '';
+    }
+});
+
+numPeopleInput.addEventListener('keyup', function () {
+    if (isNaN(this.value) || this.value < 1) {
+        this.title = 'Geçerli bir sayı girin.';
+    } else {
+        this.title = '';
+    }
+});
