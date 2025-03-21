@@ -12,6 +12,16 @@
     <div class="circle" id="enterButton" onclick="showLogin()">Enter</div>
     <div class="login-form" id="loginForm">
     <script>
+
+function updateClock() {
+            const currentTime = new Date();
+            const hours = String(currentTime.getHours()).padStart(2, '0');
+            const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+            const seconds = String(currentTime.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
         document.getElementById('enterButton').addEventListener('click', function () {
             window.location.href = 'login.html';  // Login sayfasına yönlendir
         });
