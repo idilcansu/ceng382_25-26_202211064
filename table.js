@@ -77,7 +77,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Çift Tıklama Olayı
+// Çift Tıklama Olayı (Yeni Eklenen Kod)
 classTable.addEventListener('dblclick', function (e) {
     if (e.target.tagName === 'TD') {
         const row = e.target.parentElement;
@@ -86,7 +86,14 @@ classTable.addEventListener('dblclick', function (e) {
         const description = row.cells[2].innerText;
 
         console.log('Çift Tıklama Satır Detayları:', { className, numPeople, description });
-        // İsteğe bağlı olarak satırı kaldırabilirsiniz:
-        // row.remove();
+
+        // Satırı kaldırma örneği (isteğe bağlı)
+        row.remove();
+        // Satırı kaldırdıktan sonra classData dizisinden de silmelisiniz.
+        classData = classData.filter(item => item.className !== className);
+        console.log("Güncellenmiş classData:", classData);
+
+        // Ya da detaylı bilgi gösterme örneği (isteğe bağlı)
+        // alert(`Sınıf: ${className}\nKişi Sayısı: ${numPeople}\nAçıklama: ${description}`);
     }
 });
