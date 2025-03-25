@@ -3,7 +3,7 @@ let userLogins = [];
 function showLogin() {
     let loginForm = document.getElementById('loginForm');
     loginForm.style.display = 'block';
-    loginForm.style.animation = 'slideFadeIn 0.6s ease-out forwards';
+    loginForm.style.animation = 'slideFadeIn 0.6s ease-out forwards'; //animasyon geçişinde chatten yardım alındı
     document.getElementById('enterButton').style.display = 'none';
 }
 
@@ -29,6 +29,9 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 updateClock();
+
+//help from chat for clock 
+// help from chat for h button
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'h' || event.key === 'H') {
