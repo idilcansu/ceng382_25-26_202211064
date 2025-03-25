@@ -19,7 +19,7 @@ function storeLogin() {
         alert("Please enter both username and password.");
     }
 }
-
+//help from chatgpt for clock
 function updateClock() {
     let now = new Date();
     let hours = now.getHours().toString().padStart(2, '0');
