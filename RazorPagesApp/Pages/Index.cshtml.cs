@@ -12,21 +12,26 @@ namespace RazorPagesApp.Pages
         public ClassInformationModel ClassInfo { get; set; } = new ClassInformationModel();
 
         public static List<ClassInformationModel> ClassList { get; set; } = new();
-        private static int _idCounter = 1;
+        private static int _idCounter = 1; // Benzersiz ID'ler için sayaç
 
-        // Add class data
         public void OnPost()
         {
-            // Ensure the form data is valid
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(ClassInfo.ClassName))
             {
-                ClassInfo.Id = _idCounter++; // Assign unique ID
-                ClassList.Add(ClassInfo);
-                ClassInfo = new ClassInformationModel(); // Reset form
+                // Yeni bir ID oluşturuyoruz
+                ClassInfo.Id = _idCounter++;
+
+                // Sınıf bilgisini listeye ekliyoruz
+                ClassList.Add(new ClassInformationModel
+                {
+                    Id = ClassInfo.Id,
+                    ClassName = ClassInfo.ClassName,
+                    StudentCount = ClassInfo.StudentCount,
+                    Description = ClassInfo.Description
+                });
             }
         }
 
-        // Delete class data
         public IActionResult OnPostDelete(int id)
         {
             var item = ClassList.FirstOrDefault(x => x.Id == id);
@@ -34,18 +39,24 @@ namespace RazorPagesApp.Pages
             {
                 ClassList.Remove(item);
             }
-            return RedirectToPage(); // Refresh the page
+            return RedirectToPage();
         }
 
-        // Edit class data
-        public IActionResult OnPostEdit(int id)
+        public IActionResult OnPostAdd(int id)
         {
             var item = ClassList.FirstOrDefault(x => x.Id == id);
             if (item != null)
             {
-                ClassInfo = item; // Prefill form with selected class data
+                // Aynı sınıfı tekrar listeye ekliyoruz ve yeni bir ID oluşturuyoruz
+                ClassList.Add(new ClassInformationModel
+                {
+                    Id = _idCounter++, // Yeni bir ID
+                    ClassName = item.ClassName,
+                    StudentCount = item.StudentCount,
+                    Description = item.Description
+                });
             }
-            return Page(); // Stay on the same page for editing
+            return RedirectToPage();
         }
     }
 }
