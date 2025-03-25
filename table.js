@@ -18,6 +18,7 @@ classForm.addEventListener('submit', function (e) {
     console.log(classData);
 });
 
+/* bu kısımda chatten yardım alındı */
 // Satır Tıklama Olayı
 classTable.addEventListener('click', function (e) {
     if (e.target.tagName === 'TD') {
@@ -38,6 +39,7 @@ document.getElementById('classTable').addEventListener('click', function (e) {
     }
 });
 
+//bu kısımda chatten yardım alındı
 // Giriş Alanı Odak Olayı
 const formInputs = document.querySelectorAll('#classForm input');
 
@@ -54,6 +56,7 @@ formInputs.forEach(input => {
     });
 });
 
+//chatten yardım alındı
 // Fare Üzerinde/Dışında Olayı
 classTable.addEventListener('mouseover', function (e) {
     if (e.target.tagName === 'TD') {
@@ -77,6 +80,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+//çift tıklama ile silmede chatten yardım alındı
 // Çift Tıklama Olayı (Yeni Eklenen Kod)
 classTable.addEventListener('dblclick', function (e) {
     if (e.target.tagName === 'TD') {
@@ -98,6 +102,7 @@ classTable.addEventListener('dblclick', function (e) {
     }
 });
 
+//chatten yardım alındı
 // Keyup Olayı (Yeni Eklenen Kod)
 const classNameInput = document.getElementById('className');
 const numPeopleInput = document.getElementById('numPeople');

@@ -6,7 +6,7 @@ loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
+//bu geçiş kısımlarında chatten yardım alındı (js geçişleri için)
     // Kullanıcı adı ve şifreyi diziye ekle
     users.push({ username, password });
     console.log(users);

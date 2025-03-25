@@ -179,10 +179,13 @@ body {
     font-size: 1em; /* İsteğe bağlı olarak boyutunu ayarlayabilirsiniz */
 }
 
+/* bazı hizalamalar için chatten yardım alındı */
 #classForm {
     display: inline-block; /* Formu satır içi blok yap */
     text-align: left; /* Form elemanlarını sola hizala */
 }
+
+/* key frame kısmında chatten yardım alındı */
 
 @keyframes pulse {
     0% { transform: scale(1); }
