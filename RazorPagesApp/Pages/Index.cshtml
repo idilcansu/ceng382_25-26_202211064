@@ -1,10 +1,71 @@
 ﻿@page
-@model IndexModel
+@model RazorPagesApp.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Class Information";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row">
+        <!-- Left Column: Form -->
+        <div class="col-md-6">
+            <h2>Add or Edit Class Information</h2>
+
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="ClassInfo.ClassName">Class Name:</label>
+                    <input asp-for="ClassInfo.ClassName" class="form-control" required />
+                    <span asp-validation-for="ClassInfo.ClassName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ClassInfo.StudentCount">Student Count:</label>
+                    <input asp-for="ClassInfo.StudentCount" class="form-control" type="number" required />
+                    <span asp-validation-for="ClassInfo.StudentCount" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ClassInfo.Description">Description:</label>
+                    <textarea asp-for="ClassInfo.Description" class="form-control"></textarea>
+                    <span asp-validation-for="ClassInfo.Description" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+
+        <!-- Right Column: Table -->
+        <div class="col-md-6">
+            <h3>Class List</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Class Name</th>
+                        <th>Student Count</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var classItem in RazorPagesApp.Pages.IndexModel.ClassList)
+                    {
+                        <tr>
+                            <td>@classItem.Id</td>
+                            <td>@classItem.ClassName</td>
+                            <td>@classItem.StudentCount</td>
+                            <td>@classItem.Description</td>
+                            <td>
+                                <form method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-warning" asp-page-handler="Edit" asp-route-id="@classItem.Id">Edit</button>
+                                </form>
+                                <form method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@classItem.Id">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
