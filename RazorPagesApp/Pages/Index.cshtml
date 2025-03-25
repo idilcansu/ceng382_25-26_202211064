@@ -4,62 +4,137 @@
     ViewData["Title"] = "Class Information";
 }
 
-<div class="container">
-    <div class="row">
-        <!-- Form Section -->
-        <div class="col-md-6">
-            <h2>Edit Class Information</h2>
-            <form method="post">
-                <div class="form-group">
-                    <label for="ClassName">Class Name:</label>
-                    <input type="text" id="ClassName" asp-for="ClassInfo.ClassName" class="form-control" required />
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #ffe4e1; /* Açık pembe arka plan */
+        }
+
+        h2, h3 {
+            color: #8b0000; /* Koyu kırmızı başlıklar */
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px #ffb6c1; /* Pembe gölge */
+        }
+
+        .table {
+            background-color: #ffb6c1; /* Açık pembe tablo */
+            border: 2px solid #8b0000; /* Koyu kırmızı kenarlık */
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #8b0000;
+        }
+
+        form {
+            background-color: #ffc0cb; /* Pembe form */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dotted #8b0000; /* Koyu kırmızı noktalı kenarlık */
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            background-color: #8b0000; /* Koyu kırmızı butonlar */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-right: 5px; /* Butonlar arasında boşluk */
+            display: inline-flex; /* İkonları dikey ortalamak için */
+            align-items: center; /* İkonları dikey ortalamak için */
+        }
+
+        .btn-sm i {
+            font-size: 1.2rem; /* İkon boyutunu ayarla */
+            vertical-align: middle; /* İkonları dikey ortala */
+        }
+
+        .btn-sm:hover {
+            background-color: #a52a2a; /* Daha koyu kırmızı butonlar (hover) */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>@((Model.ClassInfo.Id == 0) ? "Add Class Information" : "Edit Class Information")</h2>
+                        <form method="post">
+                            <input type="hidden" asp-for="ClassInfo.Id" />
+
+                            <div class="form-group">
+                                <label for="ClassName">Class Name:</label>
+                                <input type="text" id="ClassName" asp-for="ClassInfo.ClassName" class="form-control" required />
+                                <span asp-validation-for="ClassInfo.ClassName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="StudentCount">Student Count:</label>
+                                <input type="number" id="StudentCount" asp-for="ClassInfo.StudentCount" class="form-control" required />
+                                <span asp-validation-for="ClassInfo.StudentCount" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Description">Description:</label>
+                                <textarea id="Description" asp-for="ClassInfo.Description" class="form-control"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-sm mt-3">@((Model.ClassInfo.Id == 0) ? "Add Class" : "Update Class")</button>
+                        </form>
+                    </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="StudentCount">Student Count:</label>
-                    <input type="number" id="StudentCount" asp-for="ClassInfo.StudentCount" class="form-control" required />
+            <div class="col-md-6">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h3>Class List</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Class Name</th>
+                                    <th class="text-center">Student Count</th>
+                                    <th class="text-center">Description</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var classItem in RazorPagesApp.Pages.IndexModel.ClassList)
+                                {
+                                    <tr>
+                                        <td>@classItem.Id</td>
+                                        <td>@classItem.ClassName</td>
+                                        <td>@classItem.StudentCount</td>
+                                        <td>@classItem.Description</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-page="./Index" asp-route-id="@classItem.Id" class="btn btn-sm"><i class="bi bi-pencil"></i></a>
+                                                <form method="post">
+                                                    <button type="submit" class="btn btn-sm" asp-page-handler="Delete" asp-route-id="@classItem.Id"><i class="bi bi-trash"></i></button>
+                                                </form>
+                                                <form method="post">
+                                                    <button type="submit" class="btn btn-sm" asp-page-handler="Add" asp-route-id="@classItem.Id"><i class="bi bi-plus"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="Description">Description:</label>
-                    <textarea id="Description" asp-for="ClassInfo.Description" class="form-control"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary mt-3">Add Class</button>
-            </form>
-        </div>
-
-        <!-- Class List Section -->
-        <div class="col-md-6">
-            <h3>Class List</h3>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Class Name</th>
-                        <th>Student Count</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var classItem in RazorPagesApp.Pages.IndexModel.ClassList)
-                    {
-                        <tr>
-                            <td>@classItem.Id</td>
-                            <td>@classItem.ClassName</td>
-                            <td>@classItem.StudentCount</td>
-                            <td>@classItem.Description</td>
-                            <td>
-                                <form method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-warning" asp-page-handler="Add" asp-route-id="@classItem.Id">Add</button>
-                                    <button type="submit" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@classItem.Id">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            </div>
         </div>
     </div>
-</div>
+</body>
+</html>

@@ -14,22 +14,45 @@ namespace RazorPagesApp.Pages
         public static List<ClassInformationModel> ClassList { get; set; } = new();
         private static int _idCounter = 1; // Benzersiz ID'ler için sayaç
 
-        public void OnPost()
+        public void OnGet(int? id)
         {
-            if (!string.IsNullOrEmpty(ClassInfo.ClassName))
+            if (id.HasValue)
             {
-                // Yeni bir ID oluşturuyoruz
-                ClassInfo.Id = _idCounter++;
-
-                // Sınıf bilgisini listeye ekliyoruz
-                ClassList.Add(new ClassInformationModel
+                // Düzenleme için sınıfı bul ve ClassInfo'ya yükle
+                var item = ClassList.FirstOrDefault(x => x.Id == id);
+                if (item != null)
                 {
-                    Id = ClassInfo.Id,
-                    ClassName = ClassInfo.ClassName,
-                    StudentCount = ClassInfo.StudentCount,
-                    Description = ClassInfo.Description
-                });
+                    ClassInfo = item;
+                }
             }
+        }
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            if (ClassInfo.Id == 0)
+            {
+                // Yeni kayıt
+                ClassInfo.Id = _idCounter++;
+                ClassList.Add(ClassInfo);
+            }
+            else
+            {
+                // Düzenleme
+                var item = ClassList.FirstOrDefault(x => x.Id == ClassInfo.Id);
+                if (item != null)
+                {
+                    item.ClassName = ClassInfo.ClassName;
+                    item.StudentCount = ClassInfo.StudentCount;
+                    item.Description = ClassInfo.Description;
+                }
+            }
+
+            return RedirectToPage();
         }
 
         public IActionResult OnPostDelete(int id)
@@ -47,10 +70,9 @@ namespace RazorPagesApp.Pages
             var item = ClassList.FirstOrDefault(x => x.Id == id);
             if (item != null)
             {
-                // Aynı sınıfı tekrar listeye ekliyoruz ve yeni bir ID oluşturuyoruz
                 ClassList.Add(new ClassInformationModel
                 {
-                    Id = _idCounter++, // Yeni bir ID
+                    Id = _idCounter++,
                     ClassName = item.ClassName,
                     StudentCount = item.StudentCount,
                     Description = item.Description
