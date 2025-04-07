@@ -1,136 +1,269 @@
 ﻿@page
-@model RazorPagesApp.Pages.IndexModel
+@model MyRazorApp.Pages.IndexModel
 @{
-    ViewData["Title"] = "Class Information";
+    ViewData["Title"] = "Class Management";
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #ffe4e1;
+            background-color: #dbafdd;
+            font-family: sans-serif;
         }
 
-        h2, h3 {
-            color: #8b0000;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 1px 1px #ffb6c1;
-        }
-
-        .table {
-            background-color: #ffb6c1; /* Açık pembe tablo */
-            border: 2px solid #8b0000; /* Koyu kırmızı kenarlık */
-        }
-
-        .table th, .table td {
-            text-align: center;
-            vertical-align: middle;
-            border: 1px solid #8b0000;
-        }
-
-        form {
-            background-color: #ffc0cb; /* Pembe form */
-            padding: 20px;
+        .container-custom {
+            background: #d78484; 
+            padding: 25px;
             border-radius: 10px;
-            border: 2px dotted #8b0000; /* Koyu kırmızı noktalı kenarlık */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 0.8rem;
-            background-color: #8b0000;
+        .btn { 
+             border: none;
+             transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-add {
+            background-color: #943976 !important;
+            color: white !important;
+           /* Removed fixed padding */
+        }
+
+        .btn-add:hover {
+            background-color: #975189 !important;
+        }
+
+        .btn-cancel {
+            background-color: #943976 !important;
+            color: white !important;
+        }
+
+        .btn-cancel:hover {
+            background-color: #5d4037 !important;
+        }
+
+         .btn-red {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+        .btn-red:hover {
+            background-color: #c82333 !important;
+        }
+
+        .table-header {
+            background-color: #6d4c41;
             color: white;
-            border: none;
+        }
+
+         .form-label {
+            color: #a04caf;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
             border-radius: 5px;
-            margin-right: 5px;
-            display: inline-flex;
-            align-items: center;
         }
 
-        .btn-sm i {
-            font-size: 1.2rem;
+        .form-group {
+             margin-bottom: 1rem;
         }
 
-        .btn-sm:hover {
-            background-color: #a52a2a;
+        .pagination .page-item.active .page-link {
+            background-color: #af4caf;
+            border-color: #af4ca5;
+            color: white;
         }
+
+        .pagination .page-link {
+            color: #af4c84;
+        }
+         .pagination .page-item.disabled .page-link {
+            color: #6c757d;
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+        }
+
+        .text-danger {
+            color: #dc3545 !important;
+            font-size: 0.875em;
+        }
+
+        .action-buttons form {
+            margin: 0 2px;
+        }
+
+
+        .alert-dismissible {
+             margin-top: 15px;
+        }
+
     </style>
 </head>
+
 <body>
-    <div class="container">
+    <div class="container mt-4">
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+         @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+
         <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h2>@((Model.ClassInfo.Id == 0) ? "Add Class Information" : "Edit Class Information")</h2>
-                        <form method="post">
-                            <input type="hidden" asp-for="ClassInfo.Id" />
+            <div class="col-md-4">
+                <div class="container-custom">
+                    <h3 style="color: #6d4caf;" class="mb-4">@(Model.EditId.HasValue ? "Edit Class" : "Add Class")</h3>
 
-                            <div class="form-group">
-                                <label for="ClassName">Class Name:</label>
-                                <input type="text" id="ClassName" asp-for="ClassInfo.ClassName" class="form-control" required />
-                                <span asp-validation-for="ClassInfo.ClassName" class="text-danger"></span>
-                            </div>
+                    <form method="post" asp-page-handler="Add">
+                        <input type="hidden" asp-for="EditId" />
+                        <input type="hidden" asp-for="Filter" />
+                        <input type="hidden" asp-for="PageNumber" />
 
-                            <div class="form-group">
-                                <label for="StudentCount">Student Count:</label>
-                                <input type="number" id="StudentCount" asp-for="ClassInfo.StudentCount" class="form-control" required />
-                                <span asp-validation-for="ClassInfo.StudentCount" class="text-danger"></span>
-                            </div>
+                        <div class="form-group">
+                            <label asp-for="ClassInfo.ClassName" class="form-label">Class Name</label>
+                            <input type="text" class="form-control" asp-for="ClassInfo.ClassName" />
+                            <span asp-validation-for="ClassInfo.ClassName" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="Description">Description:</label>
-                                <textarea id="Description" asp-for="ClassInfo.Description" class="form-control"></textarea>
-                            </div>
+                        <div class="form-group">
+                            <label asp-for="ClassInfo.StudentCount" class="form-label">Student Count</label>
+                            <input type="number" class="form-control" asp-for="ClassInfo.StudentCount" />
+                            <span asp-validation-for="ClassInfo.StudentCount" class="text-danger"></span>
+                        </div>
 
-                            <button type="submit" class="btn btn-sm mt-3">@((Model.ClassInfo.Id == 0) ? "Add Class" : "Update Class")</button>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <label asp-for="ClassInfo.Description" class="form-label">Description</label>
+                            <input type="text" class="form-control" asp-for="ClassInfo.Description" />
+                            <span asp-validation-for="ClassInfo.Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <button type="submit" class="btn btn-add">
+                                @(Model.EditId.HasValue ? "Update" : "Add")
+                            </button>
+                            <a asp-page="./Index" asp-route-filter="@Model.Filter" asp-route-pageNumber="@Model.PageNumber" class="btn btn-cancel">Cancel</a>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Class List</h3>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
+            <div class="col-md-8">
+                <div class="container-custom">
+                     <h3 style="color: #6d4caf;" class="mb-3">Class List</h3>
+
+                    <form method="get" asp-page="./Index" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" asp-for="Filter" placeholder="Filter by Name or Description" />
+                            <button type="submit" class="btn btn-add">Filter</button>
+                        </div>
+                    </form>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                             <thead>
+                                <tr class="table-header">
                                     <th>Class Name</th>
                                     <th>Student Count</th>
                                     <th>Description</th>
-                                    <th>Actions</th>
+                                    <th style="width: 120px;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var classItem in RazorPagesApp.Pages.IndexModel.ClassList)
+                                @if (Model.DisplayList.Any())
+                                {
+                                    @foreach (var classInfo in Model.DisplayList)
+                                    {
+                                        <tr>
+                                            <td>@classInfo.ClassName</td>
+                                            <td>@classInfo.StudentCount</td>
+                                            <td>@classInfo.Description</td>
+                                            <td class="action-buttons d-flex justify-content-start">
+                                                <form method="post" asp-page-handler="Edit" class="d-inline me-1">
+                                                    <input type="hidden" name="id" value="@classInfo.Id" />
+                                                    <input type="hidden" asp-for="Filter" />
+                                                    <input type="hidden" asp-for="PageNumber" />
+                                                     <button type="submit" class="btn btn-cancel btn-sm" title="Edit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
+
+                                                <form method="post" asp-page-handler="Delete" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this class?');">
+                                                     <input type="hidden" name="id" value="@classInfo.Id" />
+                                                    <input type="hidden" asp-for="Filter" />
+                                                    <input type="hidden" asp-for="PageNumber" />
+                                                     <button type="submit" class="btn btn-red btn-sm" title="Delete">
+                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
                                 {
                                     <tr>
-                                        <td>@classItem.Id</td>
-                                        <td>@classItem.ClassName</td>
-                                        <td>@classItem.StudentCount</td>
-                                        <td>@classItem.Description</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a asp-page="./Index" asp-route-id="@classItem.Id" class="btn btn-sm"><i class="bi bi-pencil"></i></a>
-                                                <form method="post">
-                                                    <button type="submit" class="btn btn-sm" asp-page-handler="Delete" asp-route-id="@classItem.Id"><i class="bi bi-trash"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                        <td colspan="4" class="text-center">No classes found@(string.IsNullOrEmpty(Model.Filter) ? "." : " matching your filter.")</td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
+
+                    @if (Model.TotalPages > 1)
+                    {
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mt-3">
+                                <li class="page-item @(Model.PageNumber <= 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-filter="@Model.Filter" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+
+                                @for (int i = 1; i <= Model.TotalPages; i++)
+                                {
+                                    <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                                        <a class="page-link" asp-page="./Index" asp-route-pageNumber="@i" asp-route-filter="@Model.Filter">@i</a>
+                                    </li>
+                                }
+
+                                <li class="page-item @(Model.PageNumber >= Model.TotalPages ? "disabled" : "")">
+                                    <a class="page-link" asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-filter="@Model.Filter" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    }
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

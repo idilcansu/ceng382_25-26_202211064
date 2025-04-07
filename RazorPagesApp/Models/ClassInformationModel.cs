@@ -1,18 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RazorPagesApp.Models
+namespace MyRazorApp.Models
 {
     public class ClassInformationModel
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Sınıf Adı gereklidir.")]
+        [Required(ErrorMessage = "Class Name is required")]
         public string? ClassName { get; set; }
 
-        [Required(ErrorMessage = "Öğrenci Sayısı gereklidir.")]
-        [Range(1, 100, ErrorMessage = "Öğrenci sayısı 1 ile 100 arasında olmalıdır.")]
+        [Required(ErrorMessage = "Student Count is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Student count must be at least 1")]
         public int StudentCount { get; set; }
 
+        [Required(ErrorMessage = "Description is required")]
         public string? Description { get; set; }
     }
 }
