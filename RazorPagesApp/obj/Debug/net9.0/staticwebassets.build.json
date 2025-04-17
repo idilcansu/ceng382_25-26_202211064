@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tiJauRu/dP/i5uoMZo33MrUr8oL2xfY41X2LCdJvaPE=",
+  "Hash": "CH6ewlt1qzZqSl4eBJy/PCbVFLESgWKeqvea4FJbj9w=",
   "Source": "RazorPagesApp",
   "BasePath": "_content/RazorPagesApp",
   "Mode": "Default",
@@ -1130,6 +1130,27 @@
       "OriginalItemSpec": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
+      "Identity": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\obj\\Debug\\net9.0\\compressed\\w3dcotqsxy-jx4j1mdcwv.gz",
+      "SourceId": "RazorPagesApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/RazorPagesApp",
+      "RelativePath": "data/users#[.{fingerprint=jx4j1mdcwv}]?.json.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\data\\users.json",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "fkbw233iqc",
+      "Integrity": "cR+eTGBi0xX3C9EJT/3K1yeHC96DggcTOqxdXryU9Zw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\data\\users.json"
+    },
+    {
       "Identity": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\obj\\Debug\\net9.0\\compressed\\we0zignsrn-ft3s53vfgj.gz",
       "SourceId": "RazorPagesApp",
       "SourceType": "Discovered",
@@ -1422,6 +1443,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\data\\users.json",
+      "SourceId": "RazorPagesApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\",
+      "BasePath": "_content/RazorPagesApp",
+      "RelativePath": "data/users#[.{fingerprint}]?.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jx4j1mdcwv",
+      "Integrity": "SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\data\\users.json"
     },
     {
       "Identity": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\favicon.ico",
@@ -3022,6 +3064,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y="
+        }
+      ]
+    },
+    {
+      "Route": "data/users.json",
+      "AssetFile": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\obj\\Debug\\net9.0\\compressed\\w3dcotqsxy-jx4j1mdcwv.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.005780346821"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "172"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR+eTGBi0xX3C9EJT/3K1yeHC96DggcTOqxdXryU9Zw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 18:12:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo="
+        }
+      ]
+    },
+    {
+      "Route": "data/users.json",
+      "AssetFile": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\data\\users.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "519"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 18:12:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo="
+        }
+      ]
+    },
+    {
+      "Route": "data/users.json.gz",
+      "AssetFile": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\obj\\Debug\\net9.0\\compressed\\w3dcotqsxy-jx4j1mdcwv.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "172"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR+eTGBi0xX3C9EJT/3K1yeHC96DggcTOqxdXryU9Zw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 18:12:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cR+eTGBi0xX3C9EJT/3K1yeHC96DggcTOqxdXryU9Zw="
+        }
+      ]
+    },
+    {
+      "Route": "data/users.jx4j1mdcwv.json",
+      "AssetFile": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\obj\\Debug\\net9.0\\compressed\\w3dcotqsxy-jx4j1mdcwv.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.005780346821"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "172"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR+eTGBi0xX3C9EJT/3K1yeHC96DggcTOqxdXryU9Zw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 18:12:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jx4j1mdcwv"
+        },
+        {
+          "Name": "label",
+          "Value": "data/users.json"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo="
+        }
+      ]
+    },
+    {
+      "Route": "data/users.jx4j1mdcwv.json",
+      "AssetFile": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\wwwroot\\data\\users.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "519"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 18:12:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jx4j1mdcwv"
+        },
+        {
+          "Name": "label",
+          "Value": "data/users.json"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SddDwvvCwzH05stMnU9kbhkzpVuUK082oHU+MPgMaLo="
+        }
+      ]
+    },
+    {
+      "Route": "data/users.jx4j1mdcwv.json.gz",
+      "AssetFile": "D:\\webdevelopment_382\\ceng382_25-26_202211064\\RazorPagesApp\\obj\\Debug\\net9.0\\compressed\\w3dcotqsxy-jx4j1mdcwv.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "172"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR+eTGBi0xX3C9EJT/3K1yeHC96DggcTOqxdXryU9Zw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 18:12:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jx4j1mdcwv"
+        },
+        {
+          "Name": "label",
+          "Value": "data/users.json.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cR+eTGBi0xX3C9EJT/3K1yeHC96DggcTOqxdXryU9Zw="
         }
       ]
     },
@@ -21310,7 +21650,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21371,7 +21711,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21416,7 +21756,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21471,7 +21811,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21532,7 +21872,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21577,7 +21917,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21632,7 +21972,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21685,7 +22025,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21722,7 +22062,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21769,7 +22109,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21822,7 +22162,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21859,7 +22199,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 06:25:03 GMT"
+          "Value": "Thu, 17 Apr 2025 20:15:30 GMT"
         },
         {
           "Name": "Cache-Control",

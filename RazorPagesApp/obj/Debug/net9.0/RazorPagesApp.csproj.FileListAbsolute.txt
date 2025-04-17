@@ -5,6 +5,7 @@ D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\Exp
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\Exports\class-export-20250408-183433.json
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\Exports\class-export-20250408-184833.json
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\Exports\class-export-20250408-190622.json
+D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\Exports\class-export-20250417-211332.json
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\RazorPagesApp.staticwebassets.runtime.json
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\RazorPagesApp.staticwebassets.endpoints.json
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\bin\Debug\net9.0\RazorPagesApp.exe
@@ -24,6 +25,7 @@ D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\sco
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\scopedcss\bundle\RazorPagesApp.styles.css
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\scopedcss\projectbundle\RazorPagesApp.bundle.scp.css
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\compressed\glb96udbhz-b9sayid5wm.gz
+D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\compressed\w3dcotqsxy-jx4j1mdcwv.gz
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\compressed\wi385kdujb-61n19gt1b8.gz
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\compressed\ccsxkqw2yf-xtxxf3hu2r.gz
 D:\webdevelopment_382\ceng382_25-26_202211064\RazorPagesApp\obj\Debug\net9.0\compressed\kc6v15mv2f-t1cqhe9u97.gz

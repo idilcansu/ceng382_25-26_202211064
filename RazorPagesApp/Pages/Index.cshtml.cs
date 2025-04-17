@@ -21,10 +21,10 @@ namespace MyRazorApp.Pages
     {
         private readonly IWebHostEnvironment _env;
 
-    public IndexModel(IWebHostEnvironment env)
-    {
-        _env = env;
-    }
+        public IndexModel(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
         private static List<ClassInformationModel> ClassList = new();
         [BindProperty]
         public ClassInformationModel ClassInfo { get; set; } = new();
@@ -47,38 +47,40 @@ namespace MyRazorApp.Pages
         public List<ClassInformationTable> DisplayList { get; set; } = new();
 
         public IActionResult OnPostExportJson(string selectedColumns = "")
-    {
-        try
         {
-            var data = GetFilteredData();
-            var columns = string.IsNullOrEmpty(selectedColumns) 
-                ? new List<string>() 
-                : selectedColumns.Split(',').ToList();
+            try
+            {
+                var data = GetFilteredData();
+                var columns = string.IsNullOrEmpty(selectedColumns)
+                    ? new List<string>()
+                    : selectedColumns.Split(',').ToList();
 
-            string json = Utils.Instance.ExportToJson(data, columns);
-            
-            // Create exports directory if it doesn't exist
-            var exportDir = Path.Combine(_env.ContentRootPath, "Exports");
-            Directory.CreateDirectory(exportDir);
+                string json = Utils.Instance.ExportToJson(data, columns);
 
-            // Create filename with timestamp
-            var fileName = $"class-export-{DateTime.Now:yyyyMMdd-HHmmss}.json";
-            var filePath = Path.Combine(exportDir, fileName);
+                // Create exports directory if it doesn't exist
+                var exportDir = Path.Combine(_env.ContentRootPath, "Exports");
+                Directory.CreateDirectory(exportDir);
 
-            // Write to file
-            System.IO.File.WriteAllText(filePath, json);
+                // Create filename with timestamp
+                var fileName = $"class-export-{DateTime.Now:yyyyMMdd-HHmmss}.json";
+                var filePath = Path.Combine(exportDir, fileName);
 
-            TempData["SuccessMessage"] = $"File exported successfully to Exports folder.";
+                // Write to file
+                System.IO.File.WriteAllText(filePath, json);
+
+                TempData["SuccessMessage"] = $"File exported successfully to Exports folder.";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error exporting file: {ex.Message}";
+            }
+
+            return RedirectToPage(new { Filter, PageNumber });
         }
-        catch (Exception ex)
+        public IActionResult OnGet()
         {
-            TempData["ErrorMessage"] = $"Error exporting file: {ex.Message}";
-        }
-
-        return RedirectToPage(new { Filter, PageNumber });
-    }
-        public void OnGet()
-        {
+            if (!IsAuthenticated())
+                return RedirectToPage("Login");
             if (!ClassList.Any())
             {
                 GenerateSyntheticData();
@@ -87,28 +89,30 @@ namespace MyRazorApp.Pages
 
             if (!EditId.HasValue)
             {
-                if (ClassInfo == null || ClassInfo.Id == 0) {
-                     ClassInfo = new ClassInformationModel();
-                     ModelState.Clear();
+                if (ClassInfo == null || ClassInfo.Id == 0)
+                {
+                    ClassInfo = new ClassInformationModel();
+                    ModelState.Clear();
                 }
             }
             else
             {
-                 if (ClassInfo == null || ClassInfo.Id != EditId.Value)
-                 {
-                     var classToEdit = ClassList.FirstOrDefault(c => c.Id == EditId.Value);
-                     if (classToEdit != null)
-                     {
-                         ClassInfo = classToEdit;
-                     }
-                     else
-                     {
-                         TempData["ErrorMessage"] = "The item you were trying to edit could not be found.";
-                         EditId = null;
-                         ClassInfo = new ClassInformationModel();
-                     }
-                 }
+                if (ClassInfo == null || ClassInfo.Id != EditId.Value)
+                {
+                    var classToEdit = ClassList.FirstOrDefault(c => c.Id == EditId.Value);
+                    if (classToEdit != null)
+                    {
+                        ClassInfo = classToEdit;
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "The item you were trying to edit could not be found.";
+                        EditId = null;
+                        ClassInfo = new ClassInformationModel();
+                    }
+                }
             }
+            return Page();
         }
 
         // --- POST Handlers ---
@@ -125,7 +129,7 @@ namespace MyRazorApp.Pages
 
             if (isUpdate)
             {
-                var existing = ClassList.FirstOrDefault(c => c.Id == EditId.Value);
+var existing = ClassList.FirstOrDefault(c => c.Id == EditId.GetValueOrDefault());
                 if (existing != null)
                 {
                     existing.ClassName = ClassInfo.ClassName;
@@ -135,9 +139,9 @@ namespace MyRazorApp.Pages
                 }
                 else
                 {
-                     ModelState.AddModelError(string.Empty, "The item you were trying to edit could not be found. It might have been deleted.");
-                     UpdateDisplayList();
-                     return Page();
+                    ModelState.AddModelError(string.Empty, "The item you were trying to edit could not be found. It might have been deleted.");
+                    UpdateDisplayList();
+                    return Page();
                 }
                 EditId = null;
             }
@@ -171,15 +175,15 @@ namespace MyRazorApp.Pages
             var classToEdit = ClassList.FirstOrDefault(c => c.Id == id);
             if (classToEdit != null)
             {
-                ClassInfo = classToEdit; 
-                EditId = id; 
+                ClassInfo = classToEdit;
+                EditId = id;
             }
             else
             {
                 TempData["ErrorMessage"] = "The item you tried to edit was not found.";
                 string currentFilter = this.Filter ?? string.Empty;
                 int currentPage = this.PageNumber;
-  
+
                 return RedirectToPage(new { Filter = currentFilter, PageNumber = currentPage });
             }
 
@@ -199,7 +203,7 @@ namespace MyRazorApp.Pages
             }
             else
             {
-                 TempData["ErrorMessage"] = "The item you tried to delete was not found.";
+                TempData["ErrorMessage"] = "The item you tried to delete was not found.";
             }
 
             UpdateDisplayList();
@@ -283,6 +287,20 @@ namespace MyRazorApp.Pages
             }
 
             return query.ToList();
+        }
+        private bool IsAuthenticated()
+        {
+            var sessionUsername = HttpContext.Session.GetString("username");
+            var cookieUsername = Request.Cookies["username"];
+            var sessionToken = HttpContext.Session.GetString("token");
+            var cookieToken = Request.Cookies["token"];
+            var sessionId = HttpContext.Session.GetString("session_id");
+            var cookieSessionId = Request.Cookies["session_id"];
+
+            return sessionUsername != null &&
+                   cookieUsername == sessionUsername &&
+                   cookieToken == sessionToken &&
+                   cookieSessionId == sessionId;
         }
     }
 }

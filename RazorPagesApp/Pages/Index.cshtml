@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #dbafdd;
+            background-color: #f4f1e5;
             font-family: sans-serif;
         }
 
         .container-custom {
-            background: #d78484; 
+            background: #ffffff;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -31,40 +31,40 @@
             transition: background-color 0.2s ease-in-out;
         }
 
-        .btn-add {
-            background-color: #943976 !important;
+        .btn-green {
+            background-color: #c480c2 !important;
             color: white !important;
         }
 
-        .btn-add:hover {
-            background-color: #975189 !important;
+        .btn-green:hover {
+            background-color: #c480c2 !important;
         }
 
-        .btn-cancel {
-            background-color: #943976 !important;
+        .btn-brown {
+            background-color: #795548 !important;
             color: white !important;
         }
 
-        .btn-cancel:hover {
-            background-color: #975189 !important;
+        .btn-brown:hover {
+            background-color: #5d4037 !important;
         }
 
         .btn-red {
-            background-color: #dc3545 !important;
+            background-color: #c595cb !important;
             color: white !important;
         }
 
         .btn-red:hover {
-            background-color: #c82333 !important;
+            background-color: #c595cb !important;
         }
 
         .table-header {
-            background-color: #6d4c41;
+            background-color: #a0769f;
             color: white;
         }
 
         .form-label {
-            color: #a04caf;
+            color: #832299;
             font-weight: bold;
             margin-bottom: 5px;
         }
@@ -78,23 +78,23 @@
         }
 
         .pagination .page-item.active .page-link {
-            background-color: #af4caf;
-            border-color: #af4ca5;
+            background-color:#c480c2;
+            border-color: #c480c2;
             color: white;
         }
 
         .pagination .page-link {
-            color: #af4c84;
+            color: #926390;
         }
 
         .pagination .page-item.disabled .page-link {
-            color: #6c757d;
+            color: #c595cb;
             background-color: #e9ecef;
             border-color: #dee2e6;
         }
 
         .text-danger {
-            color: #dc3545 !important;
+            color: #c595cb !important;
             font-size: 0.875em;
         }
 
@@ -107,7 +107,7 @@
         }
 
         .selected-column {
-            background-color: #d5b6d0 !important;
+            background-color: #d1ecf1 !important;
             transition: background-color 0.2s ease-in-out;
         }
 
@@ -119,7 +119,11 @@
 
 <body>
     <div class="container mt-4">
-
+        <div class="d-flex justify-content-end mb-3">
+            <form method="get" asp-page="Logout">
+                <button type="submit" class="btn btn-red">Logout</button>
+            </form>
+        </div>
         @if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -143,7 +147,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="container-custom">
-                    <h3 style="color: #6d4caf; text-align: center;" class="mb-4">@(Model.EditId.HasValue ? "Edit Class" : "Add Class")</h3>
+                    <h3 style="color: #8a5e89;" class="mb-4">@(Model.EditId.HasValue ? "Edit Class" : "Add Class")</h3>
 
                     <form method="post" asp-page-handler="Add">
                         <input type="hidden" asp-for="EditId" />
@@ -169,11 +173,11 @@
                         </div>
 
                         <div class="d-flex justify-content-center gap-2 mt-4">
-                            <button type="submit" class="btn btn-add">
+                            <button type="submit" class="btn btn-green">
                                 @(Model.EditId.HasValue ? "Update" : "Add")
                             </button>
                             <a asp-page="./Index" asp-route-filter="@Model.Filter"
-                                asp-route-pageNumber="@Model.PageNumber" class="btn btn-cancel">Cancel</a>
+                                asp-route-pageNumber="@Model.PageNumber" class="btn btn-brown">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -181,7 +185,7 @@
 
             <div class="col-md-8">
                 <div class="container-custom">
-                    <h3 style="color: #6d4caf; text-align: center;" class="mb-3">Class List</h3>
+                    <h3 style="color: rgb(174, 96, 171);" class="mb-3">Class List</h3>
 
                     <form method="get" asp-page="./Index" class="mb-3" id="filterForm">
                         <div class="input-group">
@@ -215,7 +219,7 @@
                                                     <input type="hidden" name="id" value="@classInfo.Id" />
                                                     <input type="hidden" asp-for="Filter" />
                                                     <input type="hidden" asp-for="PageNumber" />
-                                                    <button type="submit" class="btn btn-cancel btn-sm" title="Edit">
+                                                    <button type="submit" class="btn btn-brown btn-sm" title="Edit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                             <path
@@ -292,7 +296,7 @@
                                 <input type="hidden" asp-for="Filter" />
                                 <input type="hidden" asp-for="PageNumber" />
                                 <input type="hidden" name="selectedColumns" value="" id="selectedColumnsInput" />
-                                <button type="submit" class="btn btn-add">
+                                <button type="submit" class="btn btn-green">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-download me-2" viewBox="0 0 16 16">
                                         <path
@@ -353,5 +357,4 @@
                     </script>
 
 </body>
-
 </html>
