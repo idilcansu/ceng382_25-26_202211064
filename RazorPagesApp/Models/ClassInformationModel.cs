@@ -15,5 +15,7 @@ namespace MyRazorApp.Models
 
         [Required(ErrorMessage = "Description is required")]
         public string? Description { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

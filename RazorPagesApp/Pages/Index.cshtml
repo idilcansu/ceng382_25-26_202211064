@@ -36,26 +36,14 @@
             color: white !important;
         }
 
-        .btn-green:hover {
-            background-color: #c480c2 !important;
-        }
-
         .btn-brown {
             background-color: #795548 !important;
             color: white !important;
         }
 
-        .btn-brown:hover {
-            background-color: #5d4037 !important;
-        }
-
         .btn-red {
             background-color: #c595cb !important;
             color: white !important;
-        }
-
-        .btn-red:hover {
-            background-color: #c595cb !important;
         }
 
         .table-header {
@@ -66,19 +54,14 @@
         .form-label {
             color: #832299;
             font-weight: bold;
-            margin-bottom: 5px;
         }
 
         .form-control {
             border-radius: 5px;
         }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
         .pagination .page-item.active .page-link {
-            background-color:#c480c2;
+            background-color: #c480c2;
             border-color: #c480c2;
             color: white;
         }
@@ -90,16 +73,6 @@
         .pagination .page-item.disabled .page-link {
             color: #c595cb;
             background-color: #e9ecef;
-            border-color: #dee2e6;
-        }
-
-        .text-danger {
-            color: #c595cb !important;
-            font-size: 0.875em;
-        }
-
-        .action-buttons form {
-            margin: 0 2px;
         }
 
         .alert-dismissible {
@@ -108,22 +81,23 @@
 
         .selected-column {
             background-color: #d1ecf1 !important;
-            transition: background-color 0.2s ease-in-out;
         }
 
         th[data-column] {
-            transition: background-color 0.2s ease-in-out;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
     <div class="container mt-4">
+
         <div class="d-flex justify-content-end mb-3">
             <form method="get" asp-page="Logout">
                 <button type="submit" class="btn btn-red">Logout</button>
             </form>
         </div>
+
         @if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -139,45 +113,45 @@
             </div>
         }
 
-        <form method="post">
-            <input type="hidden" asp-for="Filter" />
-            <input type="hidden" asp-for="PageNumber" />
-        </form>
-
         <div class="row">
             <div class="col-md-4">
                 <div class="container-custom">
-                    <h3 style="color: #8a5e89;" class="mb-4">@(Model.EditId.HasValue ? "Edit Class" : "Add Class")</h3>
+                    <h3 style="color: #8a5e89;">@(Model.EditId.HasValue ? "Edit Class" : "Add Class")</h3>
 
                     <form method="post" asp-page-handler="Add">
                         <input type="hidden" asp-for="EditId" />
                         <input type="hidden" asp-for="Filter" />
                         <input type="hidden" asp-for="PageNumber" />
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label asp-for="ClassInfo.ClassName" class="form-label">Class Name</label>
                             <input type="text" class="form-control" asp-for="ClassInfo.ClassName" />
                             <span asp-validation-for="ClassInfo.ClassName" class="text-danger"></span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label asp-for="ClassInfo.StudentCount" class="form-label">Student Count</label>
                             <input type="number" class="form-control" asp-for="ClassInfo.StudentCount" />
                             <span asp-validation-for="ClassInfo.StudentCount" class="text-danger"></span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label asp-for="ClassInfo.Description" class="form-label">Description</label>
                             <input type="text" class="form-control" asp-for="ClassInfo.Description" />
                             <span asp-validation-for="ClassInfo.Description" class="text-danger"></span>
                         </div>
 
-                        <div class="d-flex justify-content-center gap-2 mt-4">
+                        <div class="mb-3">
+                            <label asp-for="ClassInfo.IsActive" class="form-label">Is Active</label>
+                            <input type="checkbox" class="form-check-input" asp-for="ClassInfo.IsActive" />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-green">
                                 @(Model.EditId.HasValue ? "Update" : "Add")
                             </button>
                             <a asp-page="./Index" asp-route-filter="@Model.Filter"
-                                asp-route-pageNumber="@Model.PageNumber" class="btn btn-brown">Cancel</a>
+                               asp-route-pageNumber="@Model.PageNumber" class="btn btn-brown">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -185,63 +159,49 @@
 
             <div class="col-md-8">
                 <div class="container-custom">
-                    <h3 style="color: rgb(174, 96, 171);" class="mb-3">Class List</h3>
+                    <h3 style="color: rgb(174, 96, 171);">Class List</h3>
 
                     <form method="get" asp-page="./Index" class="mb-3" id="filterForm">
-                        <div class="input-group">
-                            <input type="text" class="form-control" asp-for="Filter"
-                                placeholder="Filter by Name or Description" id="filterInput" />
-                        </div>
+                        <input type="text" class="form-control" asp-for="Filter"
+                               placeholder="Filter by Name or Description" id="filterInput" />
                     </form>
 
                     <div class="table-responsive">
-
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr class="table-header">
-                                    <th data-column="ClassName" style="cursor: pointer;">Class Name</th>
-                                    <th data-column="StudentCount" style="cursor: pointer;">Student Count</th>
-                                    <th data-column="Description" style="cursor: pointer;">Description</th>
-                                    <th style="width: 120px;">Actions</th>
+                                    <th data-column="Id">ID</th>
+                                    <th data-column="ClassName">Class Name</th>
+                                    <th data-column="StudentCount">Student Count</th>
+                                    <th data-column="Description">Description</th>
+                                    <th data-column="IsActive">Active</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if (Model.DisplayList.Any())
                                 {
-                                    @foreach (var classInfo in Model.DisplayList)
+                                    @foreach (var item in Model.DisplayList)
                                     {
                                         <tr>
-                                            <td>@classInfo.ClassName</td>
-                                            <td>@classInfo.StudentCount</td>
-                                            <td>@classInfo.Description</td>
-                                            <td class="action-buttons d-flex justify-content-start">
-                                                <form method="post" asp-page-handler="Edit" class="d-inline me-1">
-                                                    <input type="hidden" name="id" value="@classInfo.Id" />
+                                            <td>@item.Id</td>
+                                            <td>@item.ClassName</td>
+                                            <td>@item.StudentCount</td>
+                                            <td>@item.Description</td>
+                                            <td>@(item.IsActive ? "Yes" : "No")</td>
+                                            <td class="action-buttons d-flex">
+                                                <form method="post" asp-page-handler="Edit" class="me-1">
+                                                    <input type="hidden" name="id" value="@item.Id" />
                                                     <input type="hidden" asp-for="Filter" />
                                                     <input type="hidden" asp-for="PageNumber" />
-                                                    <button type="submit" class="btn btn-brown btn-sm" title="Edit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                            <path fill-rule="evenodd"
-                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                                                        </svg>
-                                                    </button>
+                                                    <button type="submit" class="btn btn-brown btn-sm">Edit</button>
                                                 </form>
-
-                                                <form method="post" asp-page-handler="Delete" class="d-inline"
-                                                    onsubmit="return confirm('Are you sure you want to delete this class?');">
-                                                    <input type="hidden" name="id" value="@classInfo.Id" />
+                                                <form method="post" asp-page-handler="Delete"
+                                                      onsubmit="return confirm('Are you sure?');">
+                                                    <input type="hidden" name="id" value="@item.Id" />
                                                     <input type="hidden" asp-for="Filter" />
                                                     <input type="hidden" asp-for="PageNumber" />
-                                                    <button type="submit" class="btn btn-red btn-sm" title="Delete">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                                                        </svg>
-                                                    </button>
+                                                    <button type="submit" class="btn btn-red btn-sm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -250,111 +210,69 @@
                                 else
                                 {
                                     <tr>
-                                        <td colspan="4" class="text-center">No classes
-                                            found@(string.IsNullOrEmpty(Model.Filter) ? "." : " matching your filter.")</td>
+                                        <td colspan="6" class="text-center">No classes found.</td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="row mt-3">
-                        @if (Model.TotalPages > 1)
-                        {
-                            <div class="col-md-8">
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination justify-content-start">
-                                        <li class="page-item @(Model.PageNumber <= 1 ? "disabled" : "")">
-                                            <a class="page-link" asp-page="./Index"
-                                                asp-route-pageNumber="@(Model.PageNumber - 1)"
-                                                asp-route-filter="@Model.Filter" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-
-                                        @for (int i = 1; i <= Model.TotalPages; i++)
-                                        {
-                                            <li class="page-item @(Model.PageNumber == i ? "active" : "")">
-                                                <a class="page-link" asp-page="./Index" asp-route-pageNumber="@i"
-                                                    asp-route-filter="@Model.Filter">@i</a>
-                                            </li>
-                                        }
-
-                                        <li class="page-item @(Model.PageNumber >= Model.TotalPages ? "disabled" : "")">
-                                            <a class="page-link" asp-page="./Index"
-                                                asp-route-pageNumber="@(Model.PageNumber + 1)"
-                                                asp-route-filter="@Model.Filter" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        }
-                        <div class="@(Model.TotalPages > 1 ? "col-md-4 text-end" : "col-12 text-end")">
-                            <form method="post" asp-page-handler="ExportJson" class="d-inline">
-                                <input type="hidden" asp-for="Filter" />
-                                <input type="hidden" asp-for="PageNumber" />
-                                <input type="hidden" name="selectedColumns" value="" id="selectedColumnsInput" />
-                                <button type="submit" class="btn btn-green">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-download me-2" viewBox="0 0 16 16">
-                                        <path
-                                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                                        <path
-                                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-                                    </svg>
-                                    Export JSON
-                                </button>
-                            </form>
-                        </div>
+                    <div class="text-end mt-3">
+                        <form method="post" asp-page-handler="ExportJson">
+                            <input type="hidden" asp-for="Filter" />
+                            <input type="hidden" asp-for="PageNumber" />
+                            <input type="hidden" name="selectedColumns" id="selectedColumnsInput" />
+                            <button type="submit" class="btn btn-green">Export JSON</button>
+                        </form>
                     </div>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const selectedColumns = new Set();
-                            const columnHeaders = document.querySelectorAll('th[data-column]');
-                            const table = document.querySelector('table');
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            columnHeaders.forEach(th => {
-                                th.addEventListener('click', function () {
-                                    const column = this.dataset.column;
-                                    const columnIndex = Array.from(this.parentElement.children).indexOf(this);
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectedColumns = new Set();
+            const columnHeaders = document.querySelectorAll('th[data-column]');
+            const table = document.querySelector('table');
 
-                                    // Toggle class on header
-                                    this.classList.toggle('selected-column');
+            columnHeaders.forEach(th => {
+                th.addEventListener('click', function () {
+                    const column = this.dataset.column;
+                    const columnIndex = Array.from(this.parentElement.children).indexOf(this);
 
-                                    const rows = table.querySelectorAll('tbody tr');
-                                    rows.forEach(row => {
-                                        const cell = row.children[columnIndex];
-                                        if (cell) {
-                                            cell.classList.toggle('selected-column');
-                                        }
-                                    });
+                    this.classList.toggle('selected-column');
 
-                                    if (selectedColumns.has(column)) {
-                                        selectedColumns.delete(column);
-                                    } else {
-                                        selectedColumns.add(column);
-                                    }
+                    const rows = table.querySelectorAll('tbody tr');
+                    rows.forEach(row => {
+                        const cell = row.children[columnIndex];
+                        if (cell) cell.classList.toggle('selected-column');
+                    });
 
-                                    document.getElementById('selectedColumnsInput').value =
-                                        Array.from(selectedColumns).join(',');
-                                });
-                            });
-                            const filterInput = document.getElementById('filterInput');
-                            let timeoutId;
+                    if (selectedColumns.has(column)) {
+                        selectedColumns.delete(column);
+                    } else {
+                        selectedColumns.add(column);
+                    }
 
-                            if (filterInput) {
-                                filterInput.addEventListener('input', function (e) {
-                                    clearTimeout(timeoutId);
-                                    timeoutId = setTimeout(() => {
-                                        document.getElementById('filterForm').submit();
-                                    }, 800);
-                                });
-                            }
-                        });
-                    </script>
+                    document.getElementById('selectedColumnsInput').value =
+                        Array.from(selectedColumns).join(',');
+                });
+            });
 
+            const filterInput = document.getElementById('filterInput');
+            let timeoutId;
+
+            if (filterInput) {
+                filterInput.addEventListener('input', function () {
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(() => {
+                        document.getElementById('filterForm').submit();
+                    }, 800);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
