@@ -1,6 +1,6 @@
 using System;
 
-namespace MyRazorApp.Models
+namespace RazorPagesApp.Models
 {
     public class User
     {

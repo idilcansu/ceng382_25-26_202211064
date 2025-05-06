@@ -1,6 +1,6 @@
 using System.Text.Json;
+namespace RazorPagesApp.Helpers
 
-namespace MyRazorApp.Helpers
 {
     public class Utils
     {

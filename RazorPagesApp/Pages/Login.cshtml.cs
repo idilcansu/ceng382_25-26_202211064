@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
-using MyRazorApp.Models;
+using RazorPagesApp.Models;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 
-namespace MyRazorApp.Pages
+namespace RazorPagesApp.Pages
 {
     public class LoginModel : PageModel
     {

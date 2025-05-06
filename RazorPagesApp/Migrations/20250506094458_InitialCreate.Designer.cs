@@ -11,7 +11,7 @@ using RazorPagesApp.Data;
 namespace RazorPagesApp.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
-    [Migration("20250505061138_InitialCreate")]
+    [Migration("20250506094458_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace RazorPagesApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RazorPagesApp.Models.Class", b =>
+            modelBuilder.Entity("RazorPagesApp.Models.Classes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,17 +32,17 @@ namespace RazorPagesApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ClassName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonCount")
+                    b.Property<int>("StudentCount")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
